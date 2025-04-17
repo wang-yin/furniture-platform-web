@@ -1,7 +1,7 @@
 export default function SocialLoginButtons() {
   return (
-    <div className="flex justify-around space-x-6">
-      <button className="p-2 rounded-full hover:bg-blue-100 transition">
+    <div className="flex justify-around space-x-6 mb-7 sm:mb-5">
+      <button className="p-2 rounded-full hover:bg-blue-100 transition cursor-pointer shadow-md sm:shadow-lg">
         <svg
           className="w-10 h-10 text-blue-600"
           fill="currentColor"
@@ -11,7 +11,7 @@ export default function SocialLoginButtons() {
         </svg>
       </button>
 
-      <button className="p-2 rounded-full hover:bg-gray-100 transition">
+      <button className="p-2 rounded-full hover:bg-gray-100 transition cursor-pointer shadow-md sm:shadow-lg">
         <svg
           className="w-10 h-10 text-black"
           viewBox="0 0 24 24"
@@ -21,7 +21,7 @@ export default function SocialLoginButtons() {
         </svg>
       </button>
 
-      <button className="p-2 rounded-full hover:bg-red-100 transition">
+      <button className="p-2 rounded-full hover:bg-red-100 transition cursor-pointer shadow-md sm:shadow-lg">
         <svg className="w-10 h-10" viewBox="0 0 48 48">
           <path
             fill="#EA4335"
