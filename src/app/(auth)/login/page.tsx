@@ -1,22 +1,28 @@
 import Image from "next/image";
 import BG from "@/public/images/login.jpg";
 import LoginForm from "@/components/forms/LoginForm";
+import Navbar from "@/components/layouts/Navbar";
 
 export default function Login() {
   return (
-    <div className="w-full h-screen relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-7 pt-7 rounded-2xl sm:px-10  lg:px-15 lg:pt-10">
-        <h1 className="mb-5 font-[family-name:var(--font-vujahday-script)] text-3xl underline decoration-1 sm:mb-10 sm:text-4xl">
-          LOGIN
-        </h1>
-        <LoginForm />
+    <>
+      <div className="w-full h-20 absolute top-0 left-0 z-10">
+        <Navbar />
       </div>
-      <Image
-        src={BG}
-        alt="Login Background"
-        className="h-full w-full object-cover"
-        priority
-      ></Image>
-    </div>
+      <div className="w-full h-screen relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-7 pt-7 rounded-2xl sm:px-10  lg:px-15 lg:pt-10">
+          <h1 className="mb-5 font-[family-name:var(--font-vujahday-script)] text-3xl underline decoration-1 sm:mb-10 sm:text-4xl">
+            LOGIN
+          </h1>
+          <LoginForm />
+        </div>
+        <Image
+          src={BG}
+          alt="Login Background"
+          className="h-full w-full object-cover"
+          priority
+        ></Image>
+      </div>
+    </>
   );
 }
