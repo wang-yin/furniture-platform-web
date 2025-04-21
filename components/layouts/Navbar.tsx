@@ -16,7 +16,7 @@ export default function Navbar() {
       <div className="bg-white w-full flex items-center justify-between px-2 md:px-10">
         <div>
           <a href="#">
-            <Image src={LOGO} alt="logo" className="w-40"></Image>
+            <Image src={LOGO} alt="logo" className="w-40" priority></Image>
           </a>
         </div>
 
