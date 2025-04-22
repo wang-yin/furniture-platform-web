@@ -1,5 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
-import Chair from "@/public/images/chair.jpeg";
 import Footer from "@/components/layouts/Footer";
 import Slogan from "@/components/layouts/Slogan";
 import Product from "@/components/layouts/Product";
@@ -11,7 +9,6 @@ import FeaturedCollection from "@/components/layouts/FeaturedCollection";
 export default function Home() {
   return (
     <>
-      <Navbar></Navbar>
       <div>
         {/* 第一區 */}
 
