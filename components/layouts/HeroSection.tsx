@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Chair from "@/public/images/chair.jpeg";
 import LOGO from "@/public/images/logo.png";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -15,11 +16,11 @@ export default function HeroSection() {
         <p className="text-white mt-2 text-center px-3 md:text-2xl md:px-15 md:mt-5 lg:px-30 xl:text-4xl xl:px-40">
           帶來自然與舒適的居家時光
         </p>
-        <a href="#">
+        <Link href="/product">
           <button className="px-5 py-1 border-2 border-white text-white md:mt-2 lg:mt-8 xl:text-2xl cursor-pointer">
             進入選品
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

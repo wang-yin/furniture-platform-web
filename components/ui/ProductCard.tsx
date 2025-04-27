@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Product1 from "@/public/images/product1.png";
+import Link from "next/link";
 
 export default function ProductCard() {
   return (
-    <>
+    <Link href="/product/table/1">
       <div className="cursor-pointer rounded-2xl hover:shadow-xl">
         <div>
           <Image src={Product1} alt="Product" priority></Image>
@@ -16,6 +17,6 @@ export default function ProductCard() {
           <p className="lg:lg:text-lg">黑色的桌子</p>
         </div>
       </div>
-    </>
+    </Link>
   );
 }

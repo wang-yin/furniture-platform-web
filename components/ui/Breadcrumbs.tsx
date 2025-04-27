@@ -13,10 +13,13 @@ export default function Breadcrumbs() {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
 
-  const crumbs = segments.map((segment, index) => {
-    const href = "/" + segments.slice(0, index + 1).join("/");
-    return { label: labelMap[segment] || segment, href };
-  });
+  // 只留下有在 labelMap 裡的 segments
+  const crumbs = segments
+    .filter((segment) => labelMap[segment]) // 過濾掉不是在 labelMap 裡面的（也就是像 id 這種動態的）
+    .map((segment, index) => {
+      const href = "/" + segments.slice(0, index + 1).join("/");
+      return { label: labelMap[segment] || segment, href };
+    });
 
   return (
     <nav className="text-sm flex space-x-2 ml-10 mt-5 mb-3 xl:ml-30 xl:mb-8">

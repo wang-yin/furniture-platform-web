@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { MdOutlineMenu } from "react-icons/md";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -15,44 +16,44 @@ export default function Navbar() {
     <>
       <div className="bg-white w-full flex items-center justify-between px-2 md:px-10">
         <div>
-          <a href="/.">
+          <Link href="/.">
             <Image src={LOGO} alt="logo" className="w-40" priority></Image>
-          </a>
+          </Link>
         </div>
 
         <div className="hidden lg:block">
           <ul className="flex lg:gap-15 xl:gap-30">
             <li>
-              <a
-                href="#"
+              <Link
+                href="/product"
                 className="relative inline-flex items-center gap-1 after:inline-block after:ml-1 after:align-middle after:content-[''] after:border-t-[0.3em] after:border-r-[0.3em] after:border-l-[0.3em] after:border-b-0 after:border-solid after:border-transparent after:border-t-black"
               >
                 新品
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/product/sofa"
                 className="relative inline-flex items-center gap-1 after:inline-block after:ml-1 after:align-middle after:content-[''] after:border-t-[0.3em] after:border-r-[0.3em] after:border-l-[0.3em] after:border-b-0 after:border-solid after:border-transparent after:border-t-black"
               >
                 沙發
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/product/table"
                 className="relative inline-flex items-center gap-1 after:inline-block after:ml-1 after:align-middle after:content-[''] after:border-t-[0.3em] after:border-r-[0.3em] after:border-l-[0.3em] after:border-b-0 after:border-solid after:border-transparent after:border-t-black"
               >
                 桌子
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/product/chair"
                 className="relative inline-flex items-center gap-1 after:inline-block after:ml-1 after:align-middle after:content-[''] after:border-t-[0.3em] after:border-r-[0.3em] after:border-l-[0.3em] after:border-b-0 after:border-solid after:border-transparent after:border-t-black"
               >
                 椅子
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -73,12 +74,15 @@ export default function Navbar() {
           </div>
 
           <div className="flex hover:bg-gray-200 hover:-translate-y-0.5 transition rounded-full w-8 h-8 items-center justify-center">
-            <a href="#">
+            <Link href="/cart">
               <BsCart3 size={20} />
-            </a>
+            </Link>
           </div>
 
-          <div className="group flex items-center cursor-pointer hover:bg-gray-200 hover:shadow-sm transition duration-200 ease-in-out rounded px-3 py-2">
+          <Link
+            href="/login"
+            className="group flex items-center cursor-pointer hover:bg-gray-200 hover:shadow-sm transition duration-200 ease-in-out rounded px-3 py-2"
+          >
             <FaUser
               className="text-base align-middle transform transition duration-200 group-hover:-translate-y-0.5"
               size={20}
@@ -86,7 +90,7 @@ export default function Navbar() {
             <span className="text-sm leading-none hidden lg:block ml-1">
               會員登入
             </span>
-          </div>
+          </Link>
 
           <div className="lg:hidden" onClick={() => setIsOpen(true)}>
             <MdOutlineMenu size={25} />
