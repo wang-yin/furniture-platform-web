@@ -10,6 +10,7 @@
   --color-Beige: #e3ccb4;
   --color-Coffee: #2e270f;
   --color-Camel: #b58b67;
+  --color-Light-grayish-blue: hsl(223, 100%, 95%);
 }
 
 @theme inline {
