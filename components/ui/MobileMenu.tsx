@@ -4,8 +4,29 @@ import { BsCart3 } from "react-icons/bs";
 import { GrContact } from "react-icons/gr";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
+import { MdLogout } from "react-icons/md";
 
 export default function MobileMenu({ isOpen, setIsOpen }: MobileMenuProps) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    useAuthStore.getState().setLoggedIn(false);
+    router.push("/");
+  };
+
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const setLoggedIn = useAuthStore((state) => state.setLoggedIn);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []);
   return (
     <>
       {isOpen && (
@@ -66,25 +87,31 @@ export default function MobileMenu({ isOpen, setIsOpen }: MobileMenuProps) {
             </div>
 
             <div className="mt-20">
-              <h1 className="text-2xl font-medium text-gray-500">
-                成為會員，體驗優質產品並掌握相關動態。
-              </h1>
-              <div className="flex gap-3 mt-8">
-                <Link
-                  href="/register"
-                  className="rounded-full py-1 flex-1 bg-black text-white cursor-pointer flex justify-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  註冊
-                </Link>
-                <Link
-                  href="/login"
-                  className="rounded-full py-1 flex-1 outline cursor-pointer flex justify-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  登入
-                </Link>
-              </div>
+              {isLoggedIn ? (
+                ""
+              ) : (
+                <>
+                  <h1 className="text-2xl font-medium text-gray-500">
+                    成為會員，體驗優質產品並掌握相關動態。
+                  </h1>
+                  <div className="flex gap-3 mt-8">
+                    <Link
+                      href="/register"
+                      className="rounded-full py-1 flex-1 bg-black text-white cursor-pointer flex justify-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      註冊
+                    </Link>
+                    <Link
+                      href="/login"
+                      className="rounded-full py-1 flex-1 outline cursor-pointer flex justify-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      登入
+                    </Link>
+                  </div>
+                </>
+              )}
 
               <div className="mt-30 flex flex-col gap-6">
                 <Link
@@ -112,6 +139,20 @@ export default function MobileMenu({ isOpen, setIsOpen }: MobileMenuProps) {
                   <span>聯絡我</span>
                 </Link>
               </div>
+              {isLoggedIn ? (
+                <div className="mt-60">
+                  <Link
+                    href="/"
+                    onClick={handleLogout}
+                    className="flex gap-3 text-2xl font-medium cursor-pointer"
+                  >
+                    <MdLogout />
+                    <span className="">會員登出</span>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </>

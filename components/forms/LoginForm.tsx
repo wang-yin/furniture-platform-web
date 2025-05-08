@@ -3,32 +3,38 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SocialLoginButtons from "../ui/SocialLoginButtons";
 import LoginRegisterButtons from "../ui/LoginRegisterButtons";
+import { useAuthForm } from "@/hooks/useAuthForm";
 
 export default function LoginForm() {
   const [showSocial, setShowSocial] = useState(false);
+  const { formData, handleChange, handleSubmit } = useAuthForm("login");
 
   return (
-    <form className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-2">
         <label htmlFor="username">帳號</label>
         <input
           type="text"
-          id="username"
+          id="userID"
+          value={formData.userID}
+          onChange={handleChange}
           className="outline text-base py-1 px-1.5 rounded-sm text-gray-500 sm:w-70 sm:text-lg sm:py-2 sm:px-3 sm:rounded-md lg:w-80 cursor-pointer"
           placeholder="請輸入名稱..."
         ></input>
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="Password">密碼</label>
+        <label htmlFor="password">密碼</label>
         <input
           type="password"
-          id="Password"
+          id="password"
+          value={formData.password}
+          onChange={handleChange}
           className="outline text-base py-1 px-1.5 rounded-sm text-gray-500 sm:w-70 sm:text-lg sm:py-2 sm:px-3 sm:rounded-md lg:w-80 cursor-pointer"
           placeholder="請輸入密碼..."
         ></input>
       </div>
       <div className="flex items-center mt-6 gap-6">
-        <LoginRegisterButtons />
+        <LoginRegisterButtons type="login" />
       </div>
       <div className="flex items-center mt-6">
         <div className="flex-grow border-t border-gray-300"></div>

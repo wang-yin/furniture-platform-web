@@ -5,12 +5,32 @@ import { IoSearch } from "react-icons/io5";
 import { BsCart3 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineMenu } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobileMenu from "./MobileMenu";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
+import { MdLogout } from "react-icons/md";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    useAuthStore.getState().setLoggedIn(false);
+    router.push("/");
+  };
+
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const setLoggedIn = useAuthStore((state) => state.setLoggedIn);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []);
 
   return (
     <>
@@ -79,18 +99,34 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <Link
-            href="/login"
-            className="group flex items-center cursor-pointer hover:bg-gray-200 hover:shadow-sm transition duration-200 ease-in-out rounded px-3 py-2"
-          >
-            <FaUser
-              className="text-base align-middle transform transition duration-200 group-hover:-translate-y-0.5"
-              size={20}
-            />
-            <span className="text-sm leading-none hidden lg:block ml-1">
-              會員登入
-            </span>
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              href="/"
+              onClick={handleLogout}
+              className="hidden group lg:flex items-center cursor-pointer hover:bg-gray-200 hover:shadow-sm transition duration-200 ease-in-out rounded px-3 py-2"
+            >
+              <MdLogout
+                className="text-base align-middle transform transition duration-200 group-hover:-translate-y-0.5"
+                size={20}
+              />
+              <span className="text-sm leading-none hidden lg:block ml-1">
+                會員登出
+              </span>
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="hidden group lg:flex items-center cursor-pointer hover:bg-gray-200 hover:shadow-sm transition duration-200 ease-in-out rounded px-3 py-2"
+            >
+              <FaUser
+                className="text-base align-middle transform transition duration-200 group-hover:-translate-y-0.5"
+                size={20}
+              />
+              <span className="text-sm leading-none hidden lg:block ml-1">
+                會員登入
+              </span>
+            </Link>
+          )}
 
           <div className="lg:hidden" onClick={() => setIsOpen(true)}>
             <MdOutlineMenu size={25} />
